@@ -1,31 +1,21 @@
 /* Products.css */
 .products-container {
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    margin: 20px auto;
-  }
-  
-  .products-container h2 {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: #333;
-  }
-  
-  .products-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .product-item {
-    padding: 10px;
-    margin: 10px 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .product-item:last-child {
-    border-bottom: none;
-  }
-  
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.products-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.product-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-item:last-child {
+  border-bottom: none;
+}
