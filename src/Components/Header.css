@@ -8,15 +8,21 @@
   }
   
   .logo {
+    display: flex;
+    align-items: center;
     font-size: 25px;
     font-weight: bold;
     color: white;
     font-style: italic;
   }
   
+  .logo-icon {
+    margin-left: 10px;
+  }
+  
   nav button {
     padding: 10px 20px;
-    background-color:  #0056b3;
+    background-color: #0056b3;
     color: white;
     border: none;
     border-radius: 5px;
@@ -29,7 +35,7 @@
   }
   
   .admin-button {
-    background-color:  #0056b3;
+    background-color: #0056b3;
   }
   
   .admin-button:hover {

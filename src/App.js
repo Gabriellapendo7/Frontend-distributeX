@@ -8,6 +8,7 @@ import ManufacturerAuthForm from './Components/ManufacturerAuthForm';
 import ManufacturerPage from './Components/ManufacturerPage';
 import Header from './Components/Header';
 
+
 function App() {
   return (
     <Router>
