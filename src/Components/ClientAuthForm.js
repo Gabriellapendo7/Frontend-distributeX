@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 function ClientAuthForm() {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -7,8 +9,7 @@ function ClientAuthForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    // For now, we just navigate to the Client page
+    
     navigate('/client');
   };
 
@@ -19,7 +20,10 @@ function ClientAuthForm() {
         {isSignUp && (
           <div>
             <label>Name:</label>
-            <input type="text" name="name" required />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FontAwesomeIcon icon={faUserCircle} style={{ marginRight: '8px' }} />
+              <input type="text" name="name" required />
+            </div>
           </div>
         )}
         <div>
