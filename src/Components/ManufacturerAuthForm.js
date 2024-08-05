@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ManufacturerAuthForm() {
   const [isSignUp, setIsSignUp] = useState(true);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    // For now, we just navigate to the Manufacturer page
+    navigate('/manufacturer');
+  };
 
   return (
     <div>
       <h2>{isSignUp ? 'Manufacturer Sign Up' : 'Manufacturer Log In'}</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         {isSignUp && (
           <div>
-            <label>Company Name:</label>
-            <input type="text" name="companyName" required />
+            <label>Name:</label>
+            <input type="text" name="name" required />
           </div>
         )}
         <div>

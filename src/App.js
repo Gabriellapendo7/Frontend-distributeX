@@ -4,6 +4,8 @@ import HomePage from './Components/HomePage';
 import AdminPage from './Components/AdminPage';
 import ClientAuthForm from './Components/ClientAuthForm';
 import ClientPage from './Components/ClientPage';
+import ManufacturerAuthForm from './Components/ManufacturerAuthForm';
+import ManufacturerPage from './Components/ManufacturerPage';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/client-auth" element={<ClientAuthForm />} />
         <Route path="/client" element={<ClientPage />} />
+        <Route path="/manufacturer-auth" element={<ManufacturerAuthForm />} />
+        <Route path="/manufacturer" element={<ManufacturerPage />} />
       </Routes>
     </Router>
   );
