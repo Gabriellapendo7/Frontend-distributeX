@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faEnvelope, faLock, faLocationDot } from '@fortawesome/free-solid-svg-icons'; // Import icons
-import { Modal, Button } from 'react-bootstrap';
+import './ClientAuthForm.css';
 
 function ClientAuthForm() {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -20,27 +20,26 @@ function ClientAuthForm() {
       alert("Passwords do not match");
       return;
     }
-    
+
     navigate('/client');
     setShowModal(false);
   };
 
   return (
     <div>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
+      <button className="btn" onClick={() => setShowModal(true)}>
         {isSignUp ? 'Sign Up' : 'Log In'}
-      </Button>
+      </button>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{isSignUp ? 'Client Sign Up' : 'Client Log In'}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={handleSubmit}>
-            {isSignUp && (
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <FontAwesomeIcon icon={faUserCircle} style={{ marginRight: '8px' }} />
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+            <h2>{isSignUp ? 'Client Sign Up' : 'Client Log In'}</h2>
+            <form onSubmit={handleSubmit}>
+              {isSignUp && (
+                <div className="input-group">
+                  <FontAwesomeIcon icon={faUserCircle} />
                   <input 
                     placeholder='Full name'
                     type="text" 
@@ -50,11 +49,9 @@ function ClientAuthForm() {
                     required 
                   />
                 </div>
-              </div>
-            )}
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '8px' }} />
+              )}
+              <div className="input-group">
+                <FontAwesomeIcon icon={faEnvelope} />
                 <input 
                   placeholder='Email'
                   type="email" 
@@ -64,10 +61,8 @@ function ClientAuthForm() {
                   required 
                 />
               </div>
-            </div>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <FontAwesomeIcon icon={faLock} style={{ marginRight: '8px' }} />
+              <div className="input-group">
+                <FontAwesomeIcon icon={faLock} />
                 <input 
                   placeholder='Password'
                   type="password" 
@@ -77,11 +72,9 @@ function ClientAuthForm() {
                   required 
                 />
               </div>
-            </div>
-            {isSignUp && (
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <FontAwesomeIcon icon={faLock} style={{ marginRight: '8px' }} />
+              {isSignUp && (
+                <div className="input-group">
+                  <FontAwesomeIcon icon={faLock} />
                   <input 
                     placeholder='Confirm Password'
                     type="password" 
@@ -91,12 +84,10 @@ function ClientAuthForm() {
                     required 
                   />
                 </div>
-              </div>
-            )}
-            {isSignUp && (
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '8px' }} />
+              )}
+              {isSignUp && (
+                <div className="input-group">
+                  <FontAwesomeIcon icon={faLocationDot} />
                   <input 
                     placeholder='Shipping Address'
                     type="text" 
@@ -106,22 +97,19 @@ function ClientAuthForm() {
                     required 
                   />
                 </div>
-              </div>
-            )}
-            <Button type="submit" variant="primary">
-              {isSignUp ? 'Sign Up' : 'Log In'}
-            </Button>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-          <Button variant="link" onClick={() => setIsSignUp(!isSignUp)}>
-            {isSignUp ? 'Log In' : 'Sign Up'}
-          </Button>
-        </Modal.Footer>
-      </Modal>
+              )}
+              <button className="btn" type="submit">
+                {isSignUp ? 'Sign Up' : 'Log In'}
+              </button>
+            </form>
+            <div className="modal-footer">
+              <button className="btn-link" onClick={() => setIsSignUp(!isSignUp)}>
+                {isSignUp ? 'Log In' : 'Sign Up'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
