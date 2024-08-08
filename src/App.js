@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './Components/HomePage';
+import AdminPage from './Components/AdminPage';
+import ClientAuthForm from './Components/ClientAuthForm';
+import ClientPage from './Components/ClientPage';
+import ManufacturerAuthForm from './Components/ManufacturerAuthForm';
+import ManufacturerPage from './Components/ManufacturerPage';
+import Header from './Components/Header';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header /> {/* Include the Header component here so it appears on all pages */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/client-auth" element={<ClientAuthForm />} />
+          <Route path="/client" element={<ClientPage />} />
+          <Route path="/manufacturer-auth" element={<ManufacturerAuthForm />} />
+          <Route path="/manufacturer" element={<ManufacturerPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

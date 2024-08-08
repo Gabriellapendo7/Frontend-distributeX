@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #11224E;
+    border-bottom: 1px solid #F87B1B;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    font-style: italic;
+    padding-left: 40px;
+  }
+  
+  .logo-icon {
+    margin-left: 10px;
+  }
+  
+  nav button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  nav button:hover {
+    background-color: rgb(45, 144, 237);
+  }
+  
+  .admin-button {
+    background-color: #0056b3;
+  }
+  
+  .admin-button:hover {
+    background-color: rgb(45, 144, 237);
+  }
+  
