@@ -9,7 +9,7 @@ function ManufacturerPage() {
         <ul>
           <li><a href="#">Orders From Admin</a></li>
           <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="/">Logout</a></li>
         </ul>
       </aside>
       <main className="main-content">
