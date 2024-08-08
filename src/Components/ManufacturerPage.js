@@ -1,31 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import './ManufacturerPage.css'; // For styling
 
 function ManufacturerPage() {
-  const products = [
-    { id: 1, name: 'Product 1', description: 'Description of Product 1' },
-    { id: 2, name: 'Product 2', description: 'Description of Product 2' },
-    // Add more products as needed
-  ];
+  const [menuVisible, setMenuVisible] = useState(true);
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
 
   return (
-    <div>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/manufacturer">Manufacturer</Link></li>
-          <li><Link to="/cart">Cart</Link></li>
-        </ul>
-      </nav>
-      <h1>Manufacturer Page</h1>
-      <div className="product-list">
-        {products.map(product => (
-          <div key={product.id} className="product-card">
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-          </div>
-        ))}
-      </div>
+    <div className="manufacturer-container"><br />
+      <button className="menu-toggle" onClick={toggleMenu}>
+        {menuVisible ? 'Hide Menu' : 'Show Menu'}
+      </button>
+      {menuVisible && (
+        <aside className="side-menu">
+            <br /><br />
+          <h2>Manufacturer Menu</h2>
+          <ul>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Orders From Admin</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </aside>
+      )}
+      <main className="main-content">
+        <h1>Manufacturer Dashboard</h1>
+
+
+      </main>
     </div>
   );
 }
