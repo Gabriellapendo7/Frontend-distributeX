@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ManufacturerPage.css'; // For styling
+import './ManufacturerPage.css'; 
 
 function ManufacturerPage() {
   return (
@@ -15,6 +15,7 @@ function ManufacturerPage() {
       <main className="main-content">
         <h1>Manufacturer Dashboard</h1>
       </main>
+      
     </div>
   );
 }

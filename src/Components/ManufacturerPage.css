@@ -3,16 +3,16 @@
   }
   
   .side-menu {
-    background-color: #2c3e50; /* Dark background for the menu */
-    color: white; /* White text */
+    background-color: #2c3e50;
+    color: white;
     padding: 20px;
-    width: 200px; /* Set a fixed width for the side menu */
-    transition: width 0.3s; /* Smooth transition for width */
-    overflow: hidden; /* Hide overflow */
+    width: 150px; 
+    transition: width 0.3s; 
+    overflow: hidden; 
   }
   
   .side-menu:hover {
-    width: 250px; /* Expand the menu on hover */
+    width: 350px; 
   }
   
   .side-menu h2 {
@@ -29,20 +29,20 @@
   }
   
   .side-menu ul li a {
-    color: white; /* White text for links */
-    text-decoration: none; /* Remove underline from links */
-    display: block; /* Make the entire area clickable */
-    padding: 10px; /* Padding for clickable area */
+    color: white; 
+    text-decoration: none; 
+    display: block; 
+    padding: 10px; 
   }
   
   .side-menu ul li a:hover {
-    background-color: #34495e; /* Change background on hover */
+    background-color: #e1880a; 
   }
   
   .main-content {
-    padding: 20px; /* Add padding to the main content */
-    flex-grow: 1; /* Take the remaining width */
-    background-color: #ecf0f1; /* Light background for the main content */
-    min-height: 100vh; /* Ensure it takes full height */
+    padding: 20px; 
+    flex-grow: 1; 
+    background-color: #ecf0f1; 
+    min-height: 100vh; 
   }
   
