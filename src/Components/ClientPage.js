@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faBars} from '@fortawesome/free-solid-svg-icons';
 import './ClientPage.css';
 
 
+
 const products = [
-  { description: 'Description 3', price: 'Ksh.1,000', img: 'https://cdn.mafrservices.com/sys-master-root/h27/hff/12454522486814/22053_Main.jpg?im=Resize=1700?im=Resize=400' },
+  { description: 'Nyayo Beans 1kgx12', price: 'Ksh.3,300', img: 'https://cdn.mafrservices.com/sys-master-root/h27/hff/12454522486814/22053_Main.jpg?im=Resize=1700?im=Resize=400' },
   { description: 'Krackles Assorted flavoursx24', price: 'Ksh.1,400', img: 'https://cdn.optipic.io/site-2766/images/thumbnails/550/450/detailed/17/4oti6KlZHiRZucaycSyTEffux9K_Jo6EdRRnNjU4LCs.jpg' },
   { description: 'Cereal Corn Flakes Value Pack 1Kgx12', price: 'Ksh.5,500', img: 'https://cdn.mafrservices.com/sys-master-root/h9b/h44/50586219184158/19714_main.jpg?im=Resize=1700?im=Resize=400' },
   { description: 'Tilly Cooking Fat 10kg', price: 'Ksh.2,400', img: 'https://cdn.mafrservices.com/sys-master-root/h43/hd4/26950721732638/21031_1.jpg?im=Resize=1700?im=Resize=400' },
@@ -46,40 +49,48 @@ const products = [
 ];
 
 const ClientPage = () => {
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+
+  const toggleSideNav = () => {
+    setIsSideNavOpen(!isSideNavOpen);
+  };
+
   return (
     <div>
-      {/* <NavBar /> */}
-      <nav>
+      <button className="toggle-button" onClick={toggleSideNav}>
+        <FontAwesomeIcon icon={faBars} />
+      </button>
+      <nav className={`side-nav ${isSideNavOpen ? 'open' : ''}`}>
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/client">Client</Link></li>
           <li><Link to="/cart">Cart</Link></li>
         </ul>
       </nav>
-      <h1>Client Page</h1>
-      <div className="collection-container">
-        {products.map((product, index) => (
-          <div className="card" key={index}>
-            <div className="card-img">
-              {product.img ? <img src={product.img} alt={`Product ${index }`} /> : <div>No Image Available</div>}
-            </div>
-            <div className="card-info">
-              <p className="text-title">{}</p>
-              <p className="text-body">{product.description}</p>
-            </div>
-            <div className="card-footer">
-              <span className="text-title">{product.price}</span>
-              <div className="card-button">
-                <svg className="svg-icon" viewBox="0 0 20 20">
-                  {/* SVG icon content */}
-                </svg>
+      <div className={`main-content ${isSideNavOpen ? 'shifted' : ''}`}>
+        <h1>Client Page</h1>
+        <div className="collection-container">
+          {products.map((product, index) => (
+            <div className="card" key={index}>
+              <div className="card-img">
+                {product.img ? <img src={product.img} alt={`Product ${index}`} /> : <div>No Image Available</div>}
+              </div>
+              <div className="card-info">
+                <p className="text-title">{product.title}</p>
+                <p className="text-body">{product.description}</p>
+              </div>
+              <div className="card-footer">
+                <span className="text-title">{product.price}</span>
+                <div className="card-button">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default ClientPage;
