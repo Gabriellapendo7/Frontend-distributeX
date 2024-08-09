@@ -1,0 +1,29 @@
+.dashboard-container {
+    padding: 20px;
+    background-color: rgb(50, 50, 100);
+}
+
+.paper {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.table {
+    margin-top: 10px;
+}
+
+.table-head-cell {
+    font-weight: bold;
+}
+
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

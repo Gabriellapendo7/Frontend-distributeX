@@ -1,0 +1,67 @@
+/* Container for the about content */
+body {
+    background-color: #6d96d4; /* Choose a light color or any color that suits your design */
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-content {
+    padding: 30px;
+    background-color: #f7f9fc;
+    border: 2px solid #315cfd;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Title styling */
+.about-title {
+    color: #315cfd;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Paragraph styling */
+.about-content p {
+    color: #444;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* Back button styling */
+.goback {
+    width: 160px;
+    height: 50px;
+    border: 2px solid #315cfd;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ffffff, #e3e9ff);
+    color: #315cfd;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.goback:hover {    
+    background: #315cfd;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.goback:active {
+    background: #2849c9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(1px);
+}
