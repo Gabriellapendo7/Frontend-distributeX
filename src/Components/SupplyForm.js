@@ -5,22 +5,23 @@ const SupplyForm = () => {
     const [formData, setFormData] = useState({
         supply_name: '',
         quantity_ordered: '',
-        order_date: ''
+        order_date: '',
+        manufacturer_id: ''
     });
     
-    const [message, setMessage] = useState(''); 
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: name === 'quantity_ordered' ? parseInt(value) : value
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setMessage(''); 
+        setMessage('');
         try {
             const response = await fetch('http://localhost:5000/api/supply', {
                 method: 'POST',
@@ -31,21 +32,23 @@ const SupplyForm = () => {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const data = await response.json();
+                throw new Error(data.message || 'Network response was not ok');
             }
 
             const data = await response.json();
-            console.log(data); 
-            setMessage('Supply added successfully!'); 
-            
+            console.log(data);
+            setMessage('Supply added successfully!');
+
             setFormData({
                 supply_name: '',
                 quantity_ordered: '',
-                order_date: ''
+                order_date: '',
+                manufacturer_id: ''
             });
         } catch (error) {
             console.error('Error:', error);
-            setMessage('An error occurred while adding the supply.'); 
+            setMessage('An error occurred while adding the supply.');
         }
     };
 
@@ -62,7 +65,7 @@ const SupplyForm = () => {
                     required
                 />
                 
-                <label htmlFor="quantity_ordered">Quantity Ordered:</label>
+                <label htmlFor="quantity_ordered">Quantity to add:</label>
                 <input
                     type="number"
                     name="quantity_ordered"
@@ -76,6 +79,15 @@ const SupplyForm = () => {
                     type="date"
                     name="order_date"
                     value={formData.order_date}
+                    onChange={handleChange}
+                    required
+                />
+                
+                <label htmlFor="manufacturer_id">Manufacturer ID:</label>
+                <input
+                    type="number"
+                    name="manufacturer_id"
+                    value={formData.manufacturer_id}
                     onChange={handleChange}
                     required
                 />
