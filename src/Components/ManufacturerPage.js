@@ -113,6 +113,14 @@ function ManufacturerPage() {
             <p>No Orders in Stock at the moment.</p> 
           )}
         </div>
+
+ 
+        <h2 style={{ textAlign: 'center' }}>Orders From Admin</h2>
+        <div className="orders-container" style={{ textAlign: 'center' }}>
+          <p>No orders from admin at the moment.</p>
+          
+        </div>
+        
       </div>
     </div>
   );
