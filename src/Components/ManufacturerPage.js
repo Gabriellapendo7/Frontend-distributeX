@@ -17,7 +17,7 @@ function ManufacturerPage() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log('Supplies data:', data); 
+        console.log(data); 
         setSupplies(data);
       } catch (error) {
         console.error('Error fetching supplies:', error);
@@ -26,7 +26,7 @@ function ManufacturerPage() {
 
     const fetchOrders = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/supply_orders');
+        const response = await fetch('http://localhost:5000/supply_orders');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -139,7 +139,13 @@ function ManufacturerPage() {
                 <p className="order-details">Details: {order.order_details}</p>
                 <p className="contact-info">Contact: {order.contact_information}</p>
                 <p className="delivery-schedule">Delivery Schedule: {new Date(order.delivery_schedule).toLocaleString()}</p>
-                <p className="pricing">Pricing: {order.pricing_and_payment}</p>
+                <p className="pricing">
+                  Pricing: {
+                    !isNaN(parseFloat(order.pricing_and_payment))
+                      ? `$${parseFloat(order.pricing_and_payment).toFixed(2)}`
+                      : order.pricing_and_payment
+                  }
+                </p>
                 <p className="shipping-info">Shipping: {order.shipping_information}</p>
                 <p className="product-info">Product Info: {order.product_information}</p>
               </div>
