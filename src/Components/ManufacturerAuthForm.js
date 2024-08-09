@@ -9,14 +9,49 @@ function ManufacturerAuthForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [contactInfo, setContactInfo] = useState('');
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    navigate('/manufacturer');
-    setShowModal(false);
+
+    const url = isSignUp ? 'http://localhost:5555/manufacturers' : 'http://localhost:5555/manufacturers/login';
+    const method = isSignUp ? 'POST' : 'POST';
+    
+    const body = isSignUp ? {
+      username: name,  // assuming username is the name of the manufacturer
+      email: email,
+      password: password,
+      companyname: companyName,
+      contactinfo: contactInfo
+    } : {
+      username: name,
+      password: password
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        navigate('/manufacturer');  // Redirect on success
+        setShowModal(false);
+      } else {
+        const errorData = await response.json();
+        console.error(errorData.error); // Handle errors appropriately
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -32,17 +67,39 @@ function ManufacturerAuthForm() {
             <h2>{isSignUp ? 'Manufacturer Sign Up' : 'Manufacturer Log In'}</h2>
             <form onSubmit={handleSubmit}>
               {isSignUp && (
-                <div className="input-group">
-                  <FontAwesomeIcon icon={faUserCircle} />
-                  <input 
-                    placeholder='Full name'
-                    type="text" 
-                    name="name" 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required 
-                  />
-                </div>
+                <>
+                  <div className="input-group">
+                    <FontAwesomeIcon icon={faUserCircle} />
+                    <input 
+                      placeholder='Full name (Username)'
+                      type="text" 
+                      name="name" 
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required 
+                    />
+                  </div>
+                  <div className="input-group">
+                    <input 
+                      placeholder='Company Name'
+                      type="text" 
+                      name="companyname" 
+                      value={companyName}
+                      onChange={(e) => setCompanyName(e.target.value)}
+                      required 
+                    />
+                  </div>
+                  <div className="input-group">
+                    <input 
+                      placeholder='Contact Info'
+                      type="text" 
+                      name="contactinfo" 
+                      value={contactInfo}
+                      onChange={(e) => setContactInfo(e.target.value)}
+                      required 
+                    />
+                  </div>
+                </>
               )}
               <div className="input-group">
                 <FontAwesomeIcon icon={faEnvelope} />
