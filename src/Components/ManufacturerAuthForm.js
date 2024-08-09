@@ -12,16 +12,17 @@ function ManufacturerAuthForm() {
   const [companyName, setCompanyName] = useState('');
   const [contactInfo, setContactInfo] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [responseMessage, setResponseMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const url = isSignUp ? 'http://localhost:5555/manufacturers' : 'http://localhost:5555/manufacturers/login';
-    const method = isSignUp ? 'POST' : 'POST';
-    
+    const method = 'POST';
+
     const body = isSignUp ? {
-      username: name,  // assuming username is the name of the manufacturer
+      username: name,
       email: email,
       password: password,
       companyname: companyName,
@@ -40,16 +41,19 @@ function ManufacturerAuthForm() {
         body: JSON.stringify(body)
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
+        setResponseMessage(isSignUp ? "Sign Up successful!" : "Login successful!");
         console.log(data);
         navigate('/manufacturer');  // Redirect on success
         setShowModal(false);
       } else {
-        const errorData = await response.json();
-        console.error(errorData.error); // Handle errors appropriately
+        setResponseMessage(data.error || "An error occurred. Please try again.");
+        console.error(data.error); // Handle errors appropriately
       }
     } catch (error) {
+      setResponseMessage("An error occurred while processing your request.");
       console.error('Error:', error);
     }
   };
@@ -127,6 +131,7 @@ function ManufacturerAuthForm() {
                 {isSignUp ? 'Sign Up' : 'Log In'}
               </button>
             </form>
+            {responseMessage && <p className="response-message">{responseMessage}</p>}
             <div className="modal-footer">
               <button className="btn-link" onClick={() => setIsSignUp(!isSignUp)}>
                 {isSignUp ? 'Log In' : 'Sign Up'}
