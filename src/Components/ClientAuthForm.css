@@ -79,3 +79,18 @@
     margin-top: 20px;
   }
   
+  /* HANDLING ERROR / SUCCESS MESSAGE FOR THE MANUFACTURER LOGIN / SIGN UP */
+
+  .response-message {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .response-message.success {
+    color: green;
+  }
+  
+  .response-message.error {
+    color: red;
+  }
+  
