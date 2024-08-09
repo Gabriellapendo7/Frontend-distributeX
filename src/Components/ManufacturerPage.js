@@ -1,5 +1,5 @@
 import React from 'react';
-import './ManufacturerPage.css'; // For styling
+import './ManufacturerPage.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faChartLine, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +10,7 @@ function ManufacturerPage() {
         <h2>Manufacturer Menu</h2>
         <ul>
           <li><a href="#"><FontAwesomeIcon icon={faBox} /> Orders From Admin</a></li>
+          <li><a href="/supply-form"><FontAwesomeIcon icon={faBox} /> Add a new Product</a></li>
           <li><a href="#"><FontAwesomeIcon icon={faChartLine} /> Dashboard</a></li>
           <li><a href="/"><FontAwesomeIcon icon={faSignOutAlt} /> Logout</a></li>
         </ul>

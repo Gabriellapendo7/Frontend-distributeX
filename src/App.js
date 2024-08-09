@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Header /> {/* Include the Header component here so it appears on all pages */}
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="/client" element={<ClientPage />} />
           <Route path="/manufacturer-auth" element={<ManufacturerAuthForm />} />
           <Route path="/manufacturer" element={<ManufacturerPage />} />
-          <Route path="/SupplyForm" element={<SupplyForm />} />
+          <Route path="/supply-form" element={<SupplyForm />} />
         </Routes>
       </div>
     </Router>

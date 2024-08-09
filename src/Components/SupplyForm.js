@@ -19,10 +19,27 @@ const SupplyForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add your form submission logic here
-        console.log(formData);
+
+        try {
+            const response = await fetch('http://localhost:5555/api/supply', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log(data); // Handle success response as needed
+        } catch (error) {
+            console.error('Error:', error); // Handle error as needed
+        }
     };
 
     return (
