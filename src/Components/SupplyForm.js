@@ -7,6 +7,8 @@ const SupplyForm = () => {
         quantity_ordered: '',
         order_date: ''
     });
+    
+    const [message, setMessage] = useState(''); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,10 +18,35 @@ const SupplyForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add your form submission logic here
-        console.log(formData);
+        setMessage(''); 
+        try {
+            const response = await fetch('http://localhost:5000/api/supply', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log(data); 
+            setMessage('Supply added successfully!'); 
+            
+            setFormData({
+                supply_name: '',
+                quantity_ordered: '',
+                order_date: ''
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            setMessage('An error occurred while adding the supply.'); 
+        }
     };
 
     return (
@@ -55,6 +82,8 @@ const SupplyForm = () => {
                 
                 <button type="submit" className="submit-button">Submit</button>
             </form>
+
+            {message && <div className="message">{message}</div>}
         </div>
     );
 };
