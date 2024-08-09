@@ -31,7 +31,7 @@ function ManufacturerPage() {
     setEditedSupply({
       supply_name: supply.supply_name,
       quantity_ordered: supply.quantity_ordered,
-      order_date: new Date(supply.order_date).toISOString().split('T')[0], // Format date for input
+      order_date: new Date(supply.order_date).toISOString().split('T')[0], 
     });
   };
 
@@ -53,7 +53,7 @@ function ManufacturerPage() {
           supply.ID === updatedSupply.ID ? updatedSupply : supply
         )
       );
-      setEditingSupplyId(null); // Exit edit mode
+      setEditingSupplyId(null); 
     } catch (error) {
       console.error('Error updating supply:', error);
     }
