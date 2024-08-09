@@ -1,74 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ManufacturerPage.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faChartLine, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 function ManufacturerPage() {
+  const [supplies, setSupplies] = useState([]);
+
+  useEffect(() => {
+    const fetchSupplies = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/supply');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data); // Log the data to check its structure
+        setSupplies(data.supplies || data); // Adjust based on the actual structure
+      } catch (error) {
+        console.error('Error fetching supplies:', error);
+      }
+    };
+
+    fetchSupplies();
+  }, []);
+
   return (
     <div className="manufacturer-container">
       <aside className="side-menu">
         <h2>Manufacturer Menu</h2>
         <ul>
-          <li><a href="#"><FontAwesomeIcon icon={faBox} /> Orders From Admin</a></li>
+          <li><a href="/"><FontAwesomeIcon icon={faBox} /> Orders From Admin</a></li>
           <li><a href="/supply-form"><FontAwesomeIcon icon={faBox} /> Add a new Product</a></li>
-          <li><a href="#"><FontAwesomeIcon icon={faChartLine} /> Dashboard</a></li>
+          <li><a href="/"><FontAwesomeIcon icon={faChartLine} /> Dashboard</a></li>
           <li><a href="/"><FontAwesomeIcon icon={faSignOutAlt} /> Logout</a></li>
         </ul>
       </aside>
-      <main className="main-content">
-        <h1>Manufacturer Dashboard</h1>
-        <div className="stats-overview">
-          <h2>Statistics Overview</h2>
-          <div className="stat-item">
-            <h3>Total Orders</h3>
-            <p>150</p>
-          </div>
-          <div className="stat-item">
-            <h3>Total Revenue</h3>
-            <p>$12,000</p>
-          </div>
-          <div className="stat-item">
-            <h3>Pending Orders</h3>
-            <p>5</p>
-          </div>
+      <div className="main-content">
+        <div className="supply-container">
+          {supplies.length > 0 ? (
+            supplies.map((supply) => (
+              <div className="supply-card" key={supply.ID}>
+                <h3 className="supply-name">{supply.supply_name}</h3>
+                <p className="quantity-ordered">Quantity Ordered: {supply.quantity_ordered}</p>
+                <p className="order-date">Order Date: {new Date(supply.order_date).toLocaleDateString()}</p>
+              </div>
+            ))
+          ) : (
+            <p>No Orders From Admin available.</p> 
+          )}
         </div>
-        <div className="recent-orders">
-          <h2>Recent Orders</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Product</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#001</td>
-                <td>Product A</td>
-                <td>Shipped</td>
-              </tr>
-              <tr>
-                <td>#002</td>
-                <td>Product B</td>
-                <td>Pending</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="product-list">
-          <h2>Product List</h2>
-          <button>Add New Product</button>
-        </div>
-        <div className="notifications">
-          <h2>Notifications</h2>
-          <p>No new notifications.</p>
-        </div>
-        <div className="sales-chart">
-          <h2>Sales Chart</h2>
-          <div className="chart-placeholder">[Sales Chart Placeholder]</div>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
