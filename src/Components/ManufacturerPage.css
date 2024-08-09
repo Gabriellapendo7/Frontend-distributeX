@@ -56,9 +56,10 @@
 }
 
 /* Supply Container */
-.supply-container {
+.supply-container,
+.orders-container { /* Add the orders-container styling */
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping of supply cards */
+  flex-wrap: wrap; /* Allow wrapping of cards */
   gap: 20px; /* Space between cards */
 }
 
@@ -82,4 +83,8 @@
   font-size: 1em; 
 }
 
+/* Add specific styling for the orders container if needed */
+.orders-container {
+  margin-top: 30px; /* Optional: Add some space above the orders section */
+}
 

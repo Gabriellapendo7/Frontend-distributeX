@@ -26,7 +26,7 @@ function ManufacturerPage() {
 
     const fetchOrders = async () => {
       try {
-        const response = await fetch('http://localhost:5000/supply_orders');
+        const response = await fetch('http://localhost:5000/api/supply_orders');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -136,18 +136,18 @@ function ManufacturerPage() {
             orders.map((order) => (
               <div className="supply-card" key={order.ID}>
                 <h3 className="supply-name">Order for Product {order.ProductID}</h3>
-                <p className="order-details">Details: {order.order_details}</p>
-                <p className="contact-info">Contact: {order.contact_information}</p>
-                <p className="delivery-schedule">Delivery Schedule: {new Date(order.delivery_schedule).toLocaleString()}</p>
-                <p className="pricing">
+                <h2 className="order-details">Details: {order.order_details}</h2>
+                <h3 className="contact-info">Contact: {order.contact_information}</h3>
+                <h3 className="delivery-schedule">Delivery Schedule: {new Date(order.delivery_schedule).toLocaleString()}</h3>
+                <h3 className="pricing">
                   Pricing: {
                     !isNaN(parseFloat(order.pricing_and_payment))
                       ? `$${parseFloat(order.pricing_and_payment).toFixed(2)}`
                       : order.pricing_and_payment
                   }
-                </p>
-                <p className="shipping-info">Shipping: {order.shipping_information}</p>
-                <p className="product-info">Product Info: {order.product_information}</p>
+                </h3>
+                <h3 className="shipping-info">Shipping: {order.shipping_information}</h3>
+                <h3 className="product-info">Product Info: {order.product_information}</h3>
               </div>
             ))
           ) : (
