@@ -5,6 +5,7 @@ import { faBox, faChartLine, faSignOutAlt } from '@fortawesome/free-solid-svg-ic
 
 function ManufacturerPage() {
   const [supplies, setSupplies] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [editingSupplyId, setEditingSupplyId] = useState(null);
   const [editedSupply, setEditedSupply] = useState({ supply_name: '', quantity_ordered: 0, order_date: '' });
 
@@ -16,14 +17,29 @@ function ManufacturerPage() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data); 
+        console.log('Supplies data:', data); 
         setSupplies(data);
       } catch (error) {
         console.error('Error fetching supplies:', error);
       }
     };
 
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/supply_orders');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Orders data:', data); 
+        setOrders(data);
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    };
+
     fetchSupplies();
+    fetchOrders();
   }, []);
 
   const handleEditClick = (supply) => {
@@ -34,7 +50,6 @@ function ManufacturerPage() {
       order_date: new Date(supply.order_date).toISOString().split('T')[0], 
     });
   };
-  
 
   const handleSaveClick = async (supplyId) => {
     try {
@@ -116,8 +131,22 @@ function ManufacturerPage() {
         </div>
 
         <h2 style={{ textAlign: 'center' }}>Orders From Admin</h2>
-        <div className="orders-container" style={{ textAlign: 'center' }}>
-          <p>No orders from admin at the moment.</p>
+        <div className="orders-container">
+          {orders.length > 0 ? (
+            orders.map((order) => (
+              <div className="supply-card" key={order.ID}>
+                <h3 className="supply-name">Order for Product {order.ProductID}</h3>
+                <p className="order-details">Details: {order.order_details}</p>
+                <p className="contact-info">Contact: {order.contact_information}</p>
+                <p className="delivery-schedule">Delivery Schedule: {new Date(order.delivery_schedule).toLocaleString()}</p>
+                <p className="pricing">Pricing: {order.pricing_and_payment}</p>
+                <p className="shipping-info">Shipping: {order.shipping_information}</p>
+                <p className="product-info">Product Info: {order.product_information}</p>
+              </div>
+            ))
+          ) : (
+            <p>No orders from admin at the moment.</p>
+          )}
         </div>
         
       </div>
