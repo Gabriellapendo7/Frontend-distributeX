@@ -18,19 +18,28 @@ function ManufacturerAuthForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = isSignUp ? 'http://localhost:5555/manufacturers' : 'http://localhost:5555/manufacturers/login';
+    const SIGN_UP_URL = 'http://localhost:5000/manufacturers';
+    const LOGIN_URL = 'http://localhost:5000/manufacturers/login';
+    
+    const url = isSignUp ? SIGN_UP_URL : LOGIN_URL;
     const method = 'POST';
 
-    const body = isSignUp ? {
+    // Separate body objects for sign-up and login
+    const signUpBody = {
       username: name,
       email: email,
       password: password,
       companyname: companyName,
       contactinfo: contactInfo
-    } : {
+    };
+
+    const loginBody = {
       username: name,
       password: password
     };
+
+    // Use the appropriate body based on the action
+    const body = isSignUp ? signUpBody : loginBody;
 
     try {
       const response = await fetch(url, {
@@ -46,11 +55,11 @@ function ManufacturerAuthForm() {
       if (response.ok) {
         setResponseMessage(isSignUp ? "Sign Up successful!" : "Login successful!");
         console.log(data);
-        navigate('/manufacturer');  // Redirect on success
+        navigate('/manufacturer');  
         setShowModal(false);
       } else {
         setResponseMessage(data.error || "An error occurred. Please try again.");
-        console.error(data.error); // Handle errors appropriately
+        console.error(data.error); 
       }
     } catch (error) {
       setResponseMessage("An error occurred while processing your request.");
@@ -108,7 +117,7 @@ function ManufacturerAuthForm() {
               <div className="input-group">
                 <FontAwesomeIcon icon={faEnvelope} />
                 <input 
-                  placeholder='Email'
+                  placeholder='email'
                   type="email" 
                   name="email" 
                   value={email}
