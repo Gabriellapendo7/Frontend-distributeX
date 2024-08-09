@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import './ClientAuthForm.css';
+import Cookies from 'js-cookie'; 
 
 function ManufacturerAuthForm() {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -22,9 +23,7 @@ function ManufacturerAuthForm() {
     const LOGIN_URL = 'http://localhost:5000/manufacturers/login';
     
     const url = isSignUp ? SIGN_UP_URL : LOGIN_URL;
-    const method = 'POST';
 
-    // Separate body objects for sign-up and login
     const signUpBody = {
       username: name,
       email: email,
@@ -34,16 +33,15 @@ function ManufacturerAuthForm() {
     };
 
     const loginBody = {
-      username: name,
-      password: password
+      email: email,
+      password: password // Use email for login
     };
 
-    // Use the appropriate body based on the action
     const body = isSignUp ? signUpBody : loginBody;
 
     try {
       const response = await fetch(url, {
-        method: method,
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -53,7 +51,14 @@ function ManufacturerAuthForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setResponseMessage(isSignUp ? "Sign Up successful!" : "Login successful!");
+        if (isSignUp) {
+          setResponseMessage("Sign Up successful!");
+        } else {
+          setResponseMessage(`Login successful! Welcome, ${data.username}! Your Manufacturer ID is: ${data.manufacturer_id}`);
+          // Set cookies for username and manufacturer ID
+          Cookies.set('username', data.username);
+          Cookies.set('manufacturer_id', data.manufacturer_id);
+        }
         console.log(data);
         navigate('/manufacturer');  
         setShowModal(false);
@@ -117,7 +122,7 @@ function ManufacturerAuthForm() {
               <div className="input-group">
                 <FontAwesomeIcon icon={faEnvelope} />
                 <input 
-                  placeholder='email'
+                  placeholder='Email'
                   type="email" 
                   name="email" 
                   value={email}

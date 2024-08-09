@@ -7,8 +7,23 @@ function ManufacturerPage() {
   const [supplies, setSupplies] = useState([]);
   const [editingSupplyId, setEditingSupplyId] = useState(null);
   const [editedSupply, setEditedSupply] = useState({ supply_name: '', quantity_ordered: 0, order_date: '' });
+  const [manufacturerName, setManufacturerName] = useState('');
+  const [manufacturerID, setManufacturerID] = useState('');
 
   useEffect(() => {
+    // Function to get a cookie by name
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    // Fetching manufacturer data from cookies
+    const manufacturerID = getCookie('manufacturer_id');
+    const manufacturerName = getCookie('manufacturer_username');
+    setManufacturerID(manufacturerID);
+    setManufacturerName(manufacturerName);
+
     const fetchSupplies = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/supply');
@@ -17,7 +32,7 @@ function ManufacturerPage() {
         }
         const data = await response.json();
         console.log(data); 
-        setSupplies(data.supplies || data); 
+        setSupplies(data);
       } catch (error) {
         console.error('Error fetching supplies:', error);
       }
@@ -75,7 +90,7 @@ function ManufacturerPage() {
         </ul>
       </aside>
       <div className="main-content">
-        <h2>My Products in Stock</h2>
+        <h2>Welcome {manufacturerName}. Your ID is {manufacturerID}</h2>
         <div className="supply-container">
           {supplies.length > 0 ? (
             supplies.map((supply) => (
@@ -110,15 +125,13 @@ function ManufacturerPage() {
               </div>
             ))
           ) : (
-            <p>No Orders in Stock at the moment.</p> 
+            <p>No Products in Stock at the moment.</p> 
           )}
         </div>
 
- 
         <h2 style={{ textAlign: 'center' }}>Orders From Admin</h2>
         <div className="orders-container" style={{ textAlign: 'center' }}>
           <p>No orders from admin at the moment.</p>
-          
         </div>
         
       </div>
