@@ -1,21 +1,21 @@
 /* Orders.css */
 .orders-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.orders-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.order-item {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.order-item:last-child {
-  border-bottom: none;
-}
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .order-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }

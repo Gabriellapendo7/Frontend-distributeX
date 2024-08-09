@@ -1,15 +1,14 @@
-// login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Login.css';
 
 function Login({ setToken }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [Username, setUsername] = useState(''); // Change to lowercase
+  const [Password, setPassword] = useState(''); // Change to lowercase
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/login', { username, password });
+      const response = await axios.post('http://localhost:5000/login', { Username, Password }); // Change to lowercase
       setToken(response.data.access_token);
     } catch (error) {
       alert('Invalid credentials');
@@ -22,14 +21,14 @@ function Login({ setToken }) {
       <input
         type="text"
         placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={Username} // Change to lowercase
+        onChange={(e) => setUsername(e.target.value)} // Change to lowercase
       />
       <input
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={Password} // Change to lowercase
+        onChange={(e) => setPassword(e.target.value)} // Change to lowercase
       />
       <button onClick={handleLogin}>Login</button>
     </div>

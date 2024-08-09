@@ -1,21 +1,21 @@
 /* Sales.css */
 .sales-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.sales-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sales-item {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.sales-item:last-child {
-  border-bottom: none;
-}
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sales-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sales-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .sales-item:last-child {
+    border-bottom: none;
+  }
