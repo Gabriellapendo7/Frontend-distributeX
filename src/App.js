@@ -7,6 +7,7 @@ import ClientPage from './Components/ClientPage';
 import ManufacturerAuthForm from './Components/ManufacturerAuthForm';
 import ManufacturerPage from './Components/ManufacturerPage';
 import Header from './Components/Header';
+import SupplyForm from './Components/SupplyForm';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/client" element={<ClientPage />} />
           <Route path="/manufacturer-auth" element={<ManufacturerAuthForm />} />
           <Route path="/manufacturer" element={<ManufacturerPage />} />
+          <Route path="/SupplyForm" element={<SupplyForm />} />
         </Routes>
       </div>
     </Router>
