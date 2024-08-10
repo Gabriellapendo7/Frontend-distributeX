@@ -1,45 +1,73 @@
+/* Container for the register form */
 .register-container {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
+/* Header styling */
 .register-header {
-    font-size: 1.5em;
+    font-size: 1.75em;
     margin-bottom: 20px;
-    color: #343a40;
+    color: #333;
+    text-align: center;
 }
 
+/* Form layout */
 .register-form {
     display: flex;
     flex-direction: column;
 }
 
+/* Styling for labels */
 .register-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    color: #555;
 }
 
+/* Styling for inputs and selects */
 .register-form input, 
 .register-form select {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    box-sizing: border-box;
 }
 
+/* Styling for the submit button */
 .register-form button {
-    background-color: #343a40;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 6px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Button hover effect */
 .register-form button:hover {
-    background-color: #495057;
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Button active effect */
+.register-form button:active {
+    background-color: #004085;
+}
+
+/* Error message styling */
+.register-form p {
+    color: #dc3545;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 15px;
 }
