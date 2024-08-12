@@ -1,3 +1,28 @@
+.categories-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.category-button {
+  background-color: #F87B1B;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.category-button.active {
+  background-color: #11224E;
+}
+
+.category-button:hover {
+  background-color: #e87c1e;
+}
+
 .collection-container {
   display: flex;
   flex-wrap: wrap;
@@ -13,6 +38,8 @@
   position: relative;
   overflow: visible;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 0.5rem;
+  margin: 10px; /* Margin for spacing between cards */
 }
 
 .card-img {
@@ -20,7 +47,7 @@
   height: 50%;
   width: 100%;
   border-radius: 0.5rem;
-  transition: 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,12 +60,7 @@
 }
 
 .card-info {
-  padding-top: 10%;
-}
-
-svg {
-  width: 20px;
-  height: 20px;
+  padding-top: 10px; /* Adjusted for consistency */
 }
 
 .card-footer {
@@ -46,10 +68,9 @@ svg {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1px;
+  padding-top: 10px;
   border-top: 1px solid #F87B1B;
 }
-
 
 .text-title {
   font-weight: 900;
@@ -62,21 +83,14 @@ svg {
   padding-bottom: 10px;
 }
 
-
 .card-button {
   border: 1px solid #252525;
   display: flex;
   padding: 0.3em;
   cursor: pointer;
   border-radius: 50px;
-  transition: 0.3s ease-in-out;
-}
-
-/*Hover*/
-.card-img:hover {
-  transform: translateY(-25%);
-  box-shadow: #F87B1B 0px 13px 47px -5px,
-    #F87B1B 0px 8px 16px -8px;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  color: #11224E; /* Set default text color */
 }
 
 .card-button:hover {
@@ -84,11 +98,12 @@ svg {
   background-color: #ffcaa6;
 }
 
-
-body {
-  font-family: Arial, sans-serif;
+.card-img:hover {
+  transform: translateY(-10%);
+  box-shadow: #F87B1B 0px 13px 47px -5px, #F87B1B 0px 8px 16px -8px;
 }
 
+/* Side Navigation */
 .toggle-button {
   position: absolute;
   top: 10px;
@@ -99,7 +114,6 @@ body {
   padding: 10px;
   cursor: pointer;
   z-index: 1000;
- 
 }
 
 .side-nav {
@@ -107,10 +121,10 @@ body {
   top: 57px;
   left: -250px;
   width: 250px;
-  height: 100%;
+  height: calc(100% - 57px); /* Adjust height to fit below the header */
   background-color: #F87B1B;
   overflow-x: hidden;
-  transition: 0.3s;
+  transition: left 0.3s;
   z-index: 999;
 }
 
@@ -119,8 +133,9 @@ body {
 }
 
 .side-nav ul {
-  list-style-type: none;
+  list-style-type: none; /* Fixed missing property */
   padding: 0;
+  margin: 0; /* Ensure no extra margin */
 }
 
 .side-nav ul li {
@@ -145,38 +160,4 @@ body {
 
 .main-content.shifted {
   margin-left: 250px;
-}
-
-.collection-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.card {
-  background-color: white;
-  border: 1px solid #ddd;
-  margin: 10px;
-  padding: 10px;
-  width: calc(12.5% - 20px); /* Adjust the width to fit 8 cards per row */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-img img {
-  width: 100%;
-  height: auto;
-}
-
-.card-info {
-  padding: 10px 0;
-}
-
-.card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-button {
-  cursor: pointer;
-  color: #11224E;
 }
