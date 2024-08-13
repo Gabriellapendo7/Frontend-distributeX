@@ -82,7 +82,7 @@ const ClientPage = () => {
         </ul>
       </nav>
       <div className={`main-content ${isSideNavOpen ? 'shifted' : ''}`}>
-        <h1>Client Page</h1>
+       
         <div className="categories-bar">
           {categories.map(category => (
             <button
