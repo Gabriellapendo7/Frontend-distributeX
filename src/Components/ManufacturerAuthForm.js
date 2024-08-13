@@ -12,6 +12,7 @@ function ManufacturerAuthForm() {
   const [companyName, setCompanyName] = useState('');
   const [contactInfo, setContactInfo] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false); 
   const [responseMessage, setResponseMessage] = useState('');
   const navigate = useNavigate();
 
@@ -24,7 +25,6 @@ function ManufacturerAuthForm() {
     const url = isSignUp ? SIGN_UP_URL : LOGIN_URL;
     const method = 'POST';
 
-    // Separate body objects for sign-up and login
     const signUpBody = {
       username: name,
       email: email,
@@ -38,7 +38,6 @@ function ManufacturerAuthForm() {
       password: password
     };
 
-    // Use the appropriate body based on the action
     const body = isSignUp ? signUpBody : loginBody;
 
     try {
@@ -60,6 +59,34 @@ function ManufacturerAuthForm() {
       } else {
         setResponseMessage(data.error || "An error occurred. Please try again.");
         console.error(data.error); 
+      }
+    } catch (error) {
+      setResponseMessage("An error occurred while processing your request.");
+      console.error('Error:', error);
+    }
+  };
+
+  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+
+    const RESET_PASSWORD_URL = 'http://localhost:5000/manufacturer/recovery_password';
+
+    try {
+      const response = await fetch(RESET_PASSWORD_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setResponseMessage("Password reset email sent successfully!");
+        setEmail(''); 
+      } else {
+        setResponseMessage(data.message || "An error occurred. Please try again.");
       }
     } catch (error) {
       setResponseMessage("An error occurred while processing your request.");
@@ -117,7 +144,7 @@ function ManufacturerAuthForm() {
               <div className="input-group">
                 <FontAwesomeIcon icon={faEnvelope} />
                 <input 
-                  placeholder='email'
+                  placeholder='Email'
                   type="email" 
                   name="email" 
                   value={email}
@@ -136,6 +163,18 @@ function ManufacturerAuthForm() {
                   required 
                 />
               </div>
+
+              <button 
+                type="button" 
+                className="btn-link" 
+                onClick={() => {
+                  setShowForgotPassword(true);
+                  setShowModal(false);
+                }}
+              >
+                Forgot password? Click here to reset.
+              </button>
+
               <button className="btn" type="submit">
                 {isSignUp ? 'Sign Up' : 'Log In'}
               </button>
@@ -146,6 +185,32 @@ function ManufacturerAuthForm() {
                 {isSignUp ? 'Log In' : 'Sign Up'}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showForgotPassword && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowForgotPassword(false)}>&times;</span>
+            <h2>Forgot Password</h2>
+            <form onSubmit={handlePasswordReset}>
+              <div className="input-group">
+                <FontAwesomeIcon icon={faEnvelope} />
+                <input 
+                  placeholder='Enter your email'
+                  type="email" 
+                  name="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required 
+                />
+              </div>
+              <button className="btn" type="submit">
+                Send Password Reset Link
+              </button>
+            </form>
+            {responseMessage && <p className="response-message">{responseMessage}</p>}
           </div>
         </div>
       )}
