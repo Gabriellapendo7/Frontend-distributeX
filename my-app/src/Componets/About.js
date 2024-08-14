@@ -11,19 +11,19 @@ const About = () => {
                     About Us
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    Welcome to our Ecommerce app, your number one source for all things commercial. We're dedicated to providing you the very best of the products we offer, with an emphasis on quality, customer service, and uniqueness.
+                    Welcome to DistributeX, your premier source for wholesale distribution. We're committed to providing you with the highest quality products, exceptional customer service, and a unique selection tailored to your needs.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    Founded in 2020, We come a long way from its beginnings in Prestige plaza. When we first started out, our passion for sales drove us to start our own business.
+                    Founded in 2020, DistributeX has grown from its humble beginnings in Prestige Plaza. Our passion for distribution and sales inspired us to create a business that prioritizes our customers' success.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.
+                    We hope you find our products as valuable as we do. If you have any questions or comments, please don't hesitate to reach out to us.
                 </Typography>
                 <Typography variant="body1" paragraph>
                     Sincerely,
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    Mohammed, Founder
+                    Timon, Founder
                 </Typography>
             </Box>
             <NavLink className="goback" to={`/`}>

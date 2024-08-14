@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './chartconfig'; 
+import './chartconfig';
 import { Line, Bar } from 'react-chartjs-2';
 import {
     Container,
@@ -16,7 +16,11 @@ import {
     CircularProgress
 } from '@mui/material';
 import Footer from './Footer';
+import Manufacturer from './Manufacturer';
+import Admin from './Admin';
+import Clients from './Clients'; // Import Clients component
 import '../css/DashboardContent.css';
+import '../css/Clients.css'; // Import Clients CSS
 
 const DashboardContent = () => {
     // Static data for visitors
@@ -51,7 +55,7 @@ const DashboardContent = () => {
                 const [salesResponse, productsResponse, reviewsResponse] = await Promise.all([
                     fetch('/api/sales'),
                     fetch('/api/products'),
-                    fetch('/api/reviews')
+                    fetch('/api/reviews'),
                 ]);
     
                 if (!salesResponse.ok || !productsResponse.ok || !reviewsResponse.ok) {
@@ -98,28 +102,28 @@ const DashboardContent = () => {
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={6} md={3}>
                             <Paper className="paper" style={{ backgroundColor: '#17a2b8', color: '#fff' }}>
-                            <i class="fa-solid fa-road"></i>
+                                <i className="fa-solid fa-road"></i>
                                 <Typography variant="h6">CPU Traffic</Typography>
                                 <Typography variant="h4">10%</Typography> 
                             </Paper>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
                             <Paper className="paper" style={{ backgroundColor: '#dc3545', color: '#fff' }}>
-                            <i class="fa-regular fa-thumbs-up"></i>
+                                <i className="fa-regular fa-thumbs-up"></i>
                                 <Typography variant="h6">Likes</Typography>
                                 <Typography variant="h4">41,410</Typography>
                             </Paper>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
                             <Paper className="paper" style={{ backgroundColor: '#28a745', color: '#fff' }}>
-                            <i class="fa-solid fa-bag-shopping"></i>
+                                <i className="fa-solid fa-bag-shopping"></i>
                                 <Typography variant="h6">Sales</Typography>
                                 <Typography variant="h4">760</Typography>
                             </Paper>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
                             <Paper className="paper" style={{ backgroundColor: '#ffc107', color: '#fff' }}>
-                            <i class="fa-solid fa-user"></i>
+                                <i className="fa-solid fa-user"></i>
                                 <Typography variant="h6">New Members</Typography>
                                 <Typography variant="h4">2,000</Typography>
                             </Paper>
@@ -212,6 +216,19 @@ const DashboardContent = () => {
                                     </Table>
                                 </TableContainer>
                             </Paper>
+                        </Grid>
+                    </Grid>
+
+                    {/* Additional Sections for New Components */}
+                    <Grid container spacing={3} style={{ marginTop: '20px' }}>
+                        <Grid item xs={12} md={6}>
+                            <Manufacturer />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Admin />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Clients /> {/* Include Clients component */}
                         </Grid>
                     </Grid>
                 </>

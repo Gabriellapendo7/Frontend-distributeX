@@ -1,0 +1,31 @@
+.clients-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Adjust according to header/footer height */
+}
+
+.clients-paper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.TableContainer {
+    margin-top: 20px;
+}
+
+.MuiTableCell-root {
+    text-align: center;
+}
