@@ -23,7 +23,7 @@ const About = () => {
                     Sincerely,
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    
+                    Mohammed, Founder
                 </Typography>
             </Box>
             <NavLink className="goback" to={`/`}>

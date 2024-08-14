@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <Box className="footer">
             <Typography variant="body2" align="center">
-                ©️ 2024 Ecommerce App. All rights reserved.
+                © 2024 Ecommerce App. All rights reserved.
             </Typography>
         </Box>
     );

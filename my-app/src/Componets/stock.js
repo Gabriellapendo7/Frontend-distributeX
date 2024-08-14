@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import '../css/stock.css';
 
 const StockSearch = ({ items }) => {
@@ -13,7 +14,8 @@ const StockSearch = ({ items }) => {
   );
 
   return (
-    <div className="stock-container">
+    <>
+        <div className="stock-container">
       <input
         type="text"
         placeholder="Search items in stock..."
@@ -29,6 +31,10 @@ const StockSearch = ({ items }) => {
         ))}
       </ul>
     </div>
+    <NavLink className="goback" to={`/`}>
+                Back
+            </NavLink>
+    </>
   );
 };
 

@@ -15,19 +15,19 @@ import StockSearch from './Componets/stock';
 
 
 const items = [
-  { name: 'Stainless Steel Lunch Box', stock: 120 },
-  { name: 'Plastic Lunch Box', stock: 300 },
-  { name: 'Silicone Lunch Box', stock: 150 },
-  { name: 'Wheat Straw Lunch Box', stock: 80 },
-  { name: 'Cookware Set', stock: 50 },
-  { name: 'Water Bottle', stock: 200 },
-  { name: 'Cutlery', stock: 400 },
-  { name: 'Mug', stock: 250 },
-  { name: 'Dinnerware Set', stock: 70 },
-  { name: 'Kitchenware', stock: 500 },
-  { name: 'Camping Pot', stock: 30 },
-  { name: 'Tray', stock: 150 },
-  { name: 'Lunch Box Bag', stock: 60 },
+{ name: 'Stainless Steel Lunch Box', stock: 120 },
+{ name: 'Plastic Lunch Box', stock: 300 },
+{ name: 'Silicone Lunch Box', stock: 150 },
+{ name: 'Wheat Straw Lunch Box', stock: 80 },
+{ name: 'Cookware Set', stock: 50 },
+{ name: 'Water Bottle', stock: 200 },
+{ name: 'Cutlery', stock: 400 },
+{ name: 'Mug', stock: 250 },
+{ name: 'Dinnerware Set', stock: 70 },
+{ name: 'Kitchenware', stock: 500 },
+{ name: 'Camping Pot', stock: 30 },
+{ name: 'Tray', stock: 150 },
+{ name: 'Lunch Box Bag', stock: 60 },
 ];
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import {
     TableContainer,
@@ -13,21 +13,21 @@ import {
 } from '@mui/material';
 
 const Orders = () => {
-    const ordersData = [
-        { id: 'OR1001', item: 'Stainless Steel Lunch Box', status: 'Shipped', price: '$25.99' },
-        { id: 'OR1002', item: 'Plastic Lunch Box', status: 'Pending', price: '$15.99' },
-        { id: 'OR1003', item: 'Silicone Lunch Box', status: 'Delivered', price: '$19.99' },
-        { id: 'OR1004', item: 'Wheat Straw Lunch Box', status: 'Processing', price: '$12.99' },
-        { id: 'OR1005', item: 'Cookware Set', status: 'Pending', price: '$59.99' },
-        { id: 'OR1006', item: 'Water Bottle', status: 'Shipped', price: '$9.99' },
-        { id: 'OR1007', item: 'Cutlery', status: 'Delivered', price: '$8.99' },
-        { id: 'OR1008', item: 'Mug', status: 'Processing', price: '$7.99' },
-        { id: 'OR1009', item: 'Dinnerware Set', status: 'Shipped', price: '$39.99' },
-        { id: 'OR1010', item: 'Kitchenware', status: 'Pending', price: '$49.99' },
-        { id: 'OR1011', item: 'Camping Pot', status: 'Delivered', price: '$29.99' },
-        { id: 'OR1012', item: 'Tray', status: 'Processing', price: '$14.99' },
-        { id: 'OR1013', item: 'Lunch Box Bag', status: 'Shipped', price: '$11.99' },
-    ];
+    const [ordersData, setOrdersData] = useState([]);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await fetch('/api/orders');
+                const data = await response.json();
+                setOrdersData(data);
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+        };
+
+        fetchOrders();
+    }, []);
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -54,9 +54,10 @@ const Orders = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Order ID</TableCell>
-                            <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Item</TableCell>
+                            <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Client ID</TableCell>
+                            <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Order Date</TableCell>
                             <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Status</TableCell>
-                            <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Price</TableCell>
+                            <TableCell style={{ color: '#fff', backgroundColor: '#343a40' }}>Total</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -67,7 +68,8 @@ const Orders = () => {
                                         {order.id}
                                     </a>
                                 </TableCell>
-                                <TableCell>{order.item}</TableCell>
+                                <TableCell>{order.client_id}</TableCell>
+                                <TableCell>{order.order_date}</TableCell>
                                 <TableCell>
                                     <span style={{
                                         color: '#fff',
@@ -79,13 +81,13 @@ const Orders = () => {
                                         {order.status}
                                     </span>
                                 </TableCell>
-                                <TableCell>{order.price}</TableCell>
+                                <TableCell>{order.total}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            <NavLink className="goback" to={`/`}>
+            <NavLink className="goback" to="/">
                 Back
             </NavLink>
         </Box>
