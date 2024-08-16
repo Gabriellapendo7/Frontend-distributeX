@@ -1,0 +1,62 @@
+.manage-stock-products {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    margin-bottom: 10px;
+}
+
+.form-section input, .form-section textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-section button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-section button:hover {
+    background-color: #0056b3;
+}
+
+.products-list {
+    margin-top: 20px;
+}
+
+.products-list h2 {
+    margin-bottom: 10px;
+}
+
+.products-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.products-list .product-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.products-list .product-item h3 {
+    margin: 0;
+}
+
+.products-list .product-item button {
+    margin-right: 10px;
+}
